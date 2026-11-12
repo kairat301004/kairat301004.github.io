@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Кайрат Исаев — Java-разработчик</title>
+<meta name="description" content="Кайрат Исаев, Java-разработчик: Spring Boot, PostgreSQL, интеграции и бэкенд для банков, промышленности и логистики.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Manrope:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#E8EDF3;
+  --surface:#F6F8FB;
+  --ink:#14295C;
+  --text:#1B2130;
+  --muted:#46526A;
+  --line:rgba(20,41,92,.16);
+  --accent:#2448C9;
+  --signal:#E9A400;
+  --hex-line:rgba(20,41,92,.10);
+  --hex-max:.62;
+  --code-bg:#14295C;
+  --code-text:#E6ECFA;
+  --code-kw:#FFC94D;
+  --code-str:#9FD4A8;
+  --code-com:#9AA9CF;
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0D1730;
+    --surface:#132143;
+    --ink:#C9D6FF;
+    --text:#E6EBF5;
+    --muted:#A6B1CA;
+    --line:rgba(201,214,255,.14);
+    --accent:#8AA6FF;
+    --signal:#F5B82E;
+    --hex-line:rgba(201,214,255,.08);
+    --hex-max:.32;
+    --code-bg:#08102A;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0D1730;--surface:#132143;--ink:#C9D6FF;--text:#E6EBF5;--muted:#A6B1CA;
+  --line:rgba(201,214,255,.14);--accent:#8AA6FF;--signal:#F5B82E;
+  --hex-line:rgba(201,214,255,.08);--hex-max:.32;--code-bg:#08102A;color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  margin:0;background:var(--paper);color:var(--text);
+  font-family:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  font-size:1.0625rem;line-height:1.6;-webkit-font-smoothing:antialiased;
+}
+a{color:var(--accent);text-underline-offset:.2em}
+a:focus-visible,button:focus-visible{outline:3px solid var(--signal);outline-offset:3px;border-radius:4px}
+h1,h2,h3{font-family:"Unbounded","Manrope",system-ui,sans-serif;color:var(--ink);margin:0;font-weight:700;letter-spacing:-.01em}
+.wrap{width:100%;max-width:1160px;margin:0 auto;padding:0 clamp(1.25rem,4vw,2.5rem)}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;min-height:min(100svh,920px);display:flex;flex-direction:column;overflow:hidden;touch-action:pan-y}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hero-inner{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;justify-content:center;padding-top:clamp(3rem,10vh,7rem);padding-bottom:2rem}
+.role{font-family:"Unbounded",sans-serif;font-weight:500;font-size:clamp(1rem,1.6vw,1.25rem);color:var(--accent);margin:0 0 1.25rem}
+.name{font-size:clamp(3.2rem,11.5vw,9.5rem);line-height:.92;letter-spacing:-.035em}
+.name span{display:block}
+.name span:last-child{padding-left:clamp(1.5rem,9vw,8rem)}
+.lede{max-width:34rem;font-size:clamp(1.0625rem,1.5vw,1.25rem);margin:2rem 0 2.25rem;color:var(--text)}
+.actions{display:flex;flex-wrap:wrap;gap:.75rem}
+.btn{
+  display:inline-flex;align-items:center;gap:.55rem;min-height:48px;padding:.7rem 1.2rem;
+  font:inherit;font-weight:700;font-size:1rem;cursor:pointer;text-decoration:none;
+  border:2px solid var(--ink);border-radius:999px;background:transparent;color:var(--ink);
+  transition:background-color .15s,color .15s;
+}
+.btn:hover{background:var(--ink);color:var(--paper)}
+.btn.primary{background:var(--ink);color:var(--paper)}
+.btn.primary:hover{background:var(--accent);border-color:var(--accent)}
+.btn svg{width:18px;height:18px;flex:none}
+.hint{position:relative;z-index:1;font-size:.875rem;color:var(--muted);padding-bottom:1.75rem;max-width:30rem}
+.hint b{color:var(--ink);font-weight:700}
+
+/* ---------- Sections ---------- */
+section.block{padding:clamp(4rem,9vw,7rem) 0;border-top:1px solid var(--line)}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.1fr);gap:2rem clamp(2rem,5vw,4.5rem)}
+@media (max-width:820px){.grid{grid-template-columns:1fr}}
+h2{font-size:clamp(1.75rem,3.4vw,2.6rem);line-height:1.1}
+.side-note{color:var(--muted);margin:1rem 0 0;max-width:20rem;font-size:.975rem}
+
+/* timeline */
+.timeline{list-style:none;margin:0;padding:0;position:relative}
+.timeline::before{content:"";position:absolute;left:11px;top:10px;bottom:10px;width:2px;background:var(--line)}
+.job{position:relative;padding:0 0 3rem 3rem}
+.job:last-child{padding-bottom:0}
+.job::before{
+  content:"";position:absolute;left:0;top:.3rem;width:24px;height:26px;background:var(--paper);
+  clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);
+  box-shadow:inset 0 0 0 30px var(--ink);
+}
+.job.now::before{box-shadow:inset 0 0 0 30px var(--signal)}
+.period{font-weight:700;color:var(--muted);font-size:.95rem;font-variant-numeric:tabular-nums}
+.job h3{font-size:clamp(1.15rem,2vw,1.4rem);line-height:1.25;margin:.25rem 0 .2rem}
+.company{font-weight:500;color:var(--accent);margin:0 0 1rem}
+.job ul{margin:0;padding-left:1.1rem;display:grid;gap:.6rem}
+.job li{padding-left:.2rem}
+.job li::marker{color:var(--signal)}
+.job li strong{color:var(--ink)}
+
+/* skills */
+.tabs{display:inline-flex;border:2px solid var(--ink);border-radius:999px;padding:3px;margin-bottom:2rem}
+.tab{min-height:44px;padding:.45rem 1.1rem;border:0;border-radius:999px;background:transparent;color:var(--ink);font:inherit;font-weight:700;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--paper)}
+.skill-groups{display:grid;gap:2.25rem}
+.skill-groups h3{font-size:1rem;font-family:"Manrope",sans-serif;color:var(--muted);font-weight:700;margin-bottom:.8rem}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;list-style:none;margin:0;padding:0}
+.chips li{padding:.4rem .85rem;border:1.5px solid var(--line);border-radius:8px;background:var(--surface);font-weight:500}
+.chips.core li{border-color:var(--ink);color:var(--ink);font-weight:700}
+pre.code{
+  margin:0;background:var(--code-bg);color:var(--code-text);border-radius:14px;
+  padding:clamp(1.1rem,3vw,1.75rem);overflow-x:auto;
+  font:400 clamp(.8rem,1.4vw,.92rem)/1.7 "JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+.k{color:var(--code-kw)}.s{color:var(--code-str)}.c{color:var(--code-com);font-style:italic}
+[hidden]{display:none !important}
+
+/* education */
+.edu{display:grid;gap:2.5rem}
+.edu-item h3{font-size:clamp(1.1rem,1.9vw,1.35rem);line-height:1.3;margin:.25rem 0 .35rem}
+.edu-item p{margin:.4rem 0 0;max-width:40rem}
+.thesis{margin-top:1rem;padding:1.25rem 1.4rem;background:var(--surface);border-radius:4px 22px 4px 22px;border:1.5px solid var(--line)}
+.thesis b{color:var(--ink)}
+
+/* projects */
+.projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0;border-top:2px solid var(--ink)}
+.project{padding:1.5rem 1.5rem 1.75rem 0;border-bottom:1px solid var(--line)}
+.project + .project{padding-left:1.5rem;border-left:1px solid var(--line)}
+@media (max-width:560px){.project + .project{padding-left:0;border-left:0}}
+.project h3{font-size:1.25rem;margin-bottom:.5rem}
+.project p{margin:0;color:var(--muted)}
+.gh-link{display:inline-flex;align-items:center;gap:.5rem;margin-top:2rem;font-weight:700}
+
+/* contacts */
+.contact{background:var(--ink);color:var(--paper);padding:clamp(4rem,9vw,7rem) 0 calc(3rem + env(safe-area-inset-bottom,0px))}
+.contact h2{color:var(--paper);font-size:clamp(2.2rem,6vw,4.5rem);line-height:1}
+.contact-list{list-style:none;margin:2.5rem 0 0;padding:0;display:grid;gap:0;border-top:1px solid color-mix(in srgb,var(--paper) 25%,transparent)}
+.contact-list li{border-bottom:1px solid color-mix(in srgb,var(--paper) 25%,transparent)}
+.contact-list a,.contact-list button{
+  display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;width:100%;
+  padding:1.15rem 0;color:var(--paper);text-decoration:none;background:none;border:0;font:inherit;cursor:pointer;text-align:left;
+}
+.contact-list .label{color:color-mix(in srgb,var(--paper) 70%,transparent);font-size:.95rem}
+.contact-list .val{font-family:"Unbounded",sans-serif;font-weight:500;font-size:clamp(1.05rem,2.6vw,1.6rem);word-break:break-word}
+.contact-list a:hover .val,.contact-list button:hover .val{color:var(--signal)}
+.contact a:focus-visible,.contact button:focus-visible{outline-color:var(--signal)}
+.foot{margin-top:3rem;font-size:.875rem;color:color-mix(in srgb,var(--paper) 65%,transparent)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+</style>
+</head>
+<body>
+
+<header class="hero" id="top">
+  <canvas id="hex" aria-hidden="true"></canvas>
+  <div class="wrap hero-inner">
+    <p class="role">Java-разработчик</p>
+    <h1 class="name"><span>Кайрат</span><span>Исаев</span></h1>
+    <p class="lede">Пишу бэкенд на Java и Spring: интеграции банка с госсистемами, сервисы для промышленных платформ и B2B-система для рынка железнодорожных грузоперевозок.</p>
+    <div class="actions">
+      <a class="btn primary" href="https://t.me/usr1552" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 4 3 11l6 2 2 6 3-4 5 4z"/><path d="m9 13 8-6"/></svg>
+        Написать в Telegram
+      </a>
+      <button class="btn" type="button" data-copy="kairat301004@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        <span>Скопировать почту</span>
+      </button>
+      <a class="btn" href="https://github.com/kairat301004" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-4 1.5-4-2-6-2.5M15 22v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V22"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+  <p class="wrap hint">Фон — шестиугольная сетка, как в <b>H3</b> от Uber: эту систему пространственной индексации я исследую в магистратуре. Проведите по ней курсором или пальцем.</p>
+</header>
+
+<main>
+  <section class="block" id="experience" aria-labelledby="h-exp">
+    <div class="wrap grid">
+      <div>
+        <h2 id="h-exp">Опыт</h2>
+        <p class="side-note">Банковские интеграции, промышленные платформы и коммерческая разработка в команде.</p>
+      </div>
+      <ol class="timeline" reversed>
+        <li class="job now">
+          <div class="period">2026 — сейчас</div>
+          <h3>RailScope</h3>
+          <p class="company">FullStack-разработчик в кросс-функциональной команде</p>
+          <ul>
+            <li>B2B-система для рынка железнодорожных грузоперевозок.</li>
+            <li>Коммерческая разработка под задачи заказчика.</li>
+          </ul>
+        </li>
+        <li class="job">
+          <div class="period">04.2026 — 08.2026</div>
+          <h3>Java-разработчик, стажёр</h3>
+          <p class="company">ЗАО «Банк Азии»</p>
+          <ul>
+            <li><strong>Автоматизировал открытие пенсионных счетов.</strong> Сделал интеграцию с Социальным фондом через шлюз ГИС: приём заявок, автоматическое создание клиента в АБС и открытие счёта. Сервис работает в продакшене.</li>
+            <li><strong>Повысил защиту данных.</strong> Написал утилиту маскирования персональных данных, которую внедрили во все внутренние сервисы банка.</li>
+            <li>Участвовал в разработке новых сервисов и поддерживал стабильную работу действующих проектов.</li>
+          </ul>
+        </li>
+        <li class="job">
+          <div class="period">05.2025 — 09.2025</div>
+          <h3>Java-разработчик, практикант</h3>
+          <p class="company">ООО «Наука»</p>
+          <ul>
+            <li>Разрабатывал АС «Комплексная эффективность функционирования установок» для промышленной платформы и корпоративную платформу предприятия в отделе web-разработки.</li>
+            <li>Покрывал сервисный слой модульными тестами на JUnit и Mockito, проводил статический анализ в SonarQube.</li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="block" id="skills" aria-labelledby="h-skills">
+    <div class="wrap grid">
+      <div>
+        <h2 id="h-skills">Навыки</h2>
+        <p class="side-note">Тот же стек можно посмотреть так, как его увидел бы компилятор.</p>
+      </div>
+      <div>
+        <div class="tabs" role="tablist" aria-label="Вид навыков">
+          <button class="tab" role="tab" id="tab-list" aria-selected="true" aria-controls="panel-list">Списком</button>
+          <button class="tab" role="tab" id="tab-java" aria-selected="false" aria-controls="panel-java" tabindex="-1">На Java</button>
+        </div>
+        <div id="panel-list" role="tabpanel" aria-labelledby="tab-list" class="skill-groups">
+          <div>
+            <h3>Основной стек</h3>
+            <ul class="chips core">
+              <li>Java</li><li>Spring Boot</li><li>Spring MVC</li><li>Spring Data</li><li>Spring Security</li><li>Hibernate ORM</li><li>RESTful API</li><li>PostgreSQL</li><li>MS SQL Server</li><li>Multithreading</li><li>JUnit</li><li>Mockito</li><li>Git</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Дополнительно</h3>
+            <ul class="chips">
+              <li>Docker</li><li>Kafka</li><li>Redis</li><li>Liquibase</li><li>Kotlin</li><li>Android</li><li>Firebase</li><li>CI/CD</li><li>S3-хранилище</li><li>Администрирование VPS/VDS</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Основы разработки</h3>
+            <ul class="chips">
+              <li>ООП</li><li>SOLID</li><li>Паттерны проектирования</li>
+            </ul>
+          </div>
+        </div>
+        <div id="panel-java" role="tabpanel" aria-labelledby="tab-java" hidden>
+<pre class="code"><code><span class="k">public final class</span> Kairat <span class="k">implements</span> JavaDeveloper {
+
+    <span class="c">// основной стек</span>
+    <span class="k">private final</span> List&lt;String&gt; core = List.of(
+        <span class="s">"Java"</span>, <span class="s">"Spring Boot"</span>, <span class="s">"Spring MVC"</span>, <span class="s">"Spring Data"</span>,
+        <span class="s">"Spring Security"</span>, <span class="s">"Hibernate ORM"</span>, <span class="s">"RESTful API"</span>,
+        <span class="s">"PostgreSQL"</span>, <span class="s">"MS SQL Server"</span>, <span class="s">"Multithreading"</span>,
+        <span class="s">"JUnit"</span>, <span class="s">"Mockito"</span>, <span class="s">"Git"</span>);
+
+    <span class="c">// дополнительно</span>
+    <span class="k">private final</span> List&lt;String&gt; extra = List.of(
+        <span class="s">"Docker"</span>, <span class="s">"Kafka"</span>, <span class="s">"Redis"</span>, <span class="s">"Liquibase"</span>, <span class="s">"Kotlin"</span>,
+        <span class="s">"Android"</span>, <span class="s">"Firebase"</span>, <span class="s">"CI/CD"</span>, <span class="s">"S3"</span>, <span class="s">"VPS/VDS"</span>);
+
+    <span class="c">// основы</span>
+    <span class="k">private final</span> List&lt;String&gt; principles = List.of(
+        <span class="s">"ООП"</span>, <span class="s">"SOLID"</span>, <span class="s">"Паттерны проектирования"</span>);
+}</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="education" aria-labelledby="h-edu">
+    <div class="wrap grid">
+      <div>
+        <h2 id="h-edu">Образование</h2>
+        <p class="side-note">БГТУ «ВОЕНМЕХ» им. Д.&nbsp;Ф.&nbsp;Устинова, Санкт-Петербург.</p>
+      </div>
+      <div class="edu">
+        <div class="edu-item">
+          <div class="period">2026 — 2028</div>
+          <h3>Магистратура, «Программная инженерия»</h3>
+          <div class="thesis">
+            <p style="margin:0">Тема магистерской — <b>геолокационная сеть с рекомендациями по местоположению.</b> Планирую исследовать алгоритм H3 от Uber для пространственной индексации, PostGIS и Redis GEO для обработки геоданных, а также ИИ-модератора.</p>
+          </div>
+        </div>
+        <div class="edu-item">
+          <div class="period">2022 — 2026</div>
+          <h3>Бакалавриат, «Информационные системы и технологии»</h3>
+          <p>Выпускная работа — fullstack-решение для внутренней коммуникации сотрудников организации.</p>
+        </div>
+        <div class="edu-item">
+          <h3>Курс «Java-разработчик»</h3>
+          <p>IT-курсы MEGALAB.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="projects" aria-labelledby="h-proj">
+    <div class="wrap grid">
+      <div>
+        <h2 id="h-proj">Проекты</h2>
+        <p class="side-note">Код открыт — можно посмотреть, как я пишу.</p>
+      </div>
+      <div>
+        <div class="projects">
+          <article class="project">
+            <h3>Tandem</h3>
+            <p>Корпоративный портал.</p>
+          </article>
+          <article class="project">
+            <h3>SMIEchat</h3>
+            <p>Мессенджер под Android.</p>
+          </article>
+        </div>
+        <a class="gh-link" href="https://github.com/kairat301004" target="_blank" rel="noopener">Все проекты на GitHub: github.com/kairat301004</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="contact" id="contact" aria-labelledby="h-contact">
+  <div class="wrap">
+    <h2 id="h-contact">Связаться</h2>
+    <ul class="contact-list">
+      <li><a href="https://t.me/usr1552" target="_blank" rel="noopener"><span class="label">Telegram</span><span class="val">@usr1552</span></a></li>
+      <li><button type="button" data-copy="kairat301004@gmail.com"><span class="label">Почта — нажмите, чтобы скопировать</span><span class="val">kairat301004@gmail.com</span></button></li>
+      <li><a href="tel:+79119873004"><span class="label">Телефон</span><span class="val">+7 911 987-30-04</span></a></li>
+      <li><a href="https://github.com/kairat301004" target="_blank" rel="noopener"><span class="label">GitHub</span><span class="val">kairat301004</span></a></li>
+    </ul>
+    <p class="foot">Кайрат Исаев, Java-разработчик</p>
+  </div>
+</footer>
+
+<div class="sr" aria-live="polite" id="live"></div>
+
+<script>
+(function(){
+  /* ---------- copy email ---------- */
+  var live = document.getElementById('live');
+  document.querySelectorAll('[data-copy]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var text = btn.getAttribute('data-copy');
+      var done = function(){
+        var target = btn.querySelector('span:not(.val)') || btn;
+        var old = target.textContent;
+        target.textContent = 'Почта скопирована';
+        live.textContent = 'Почта скопирована';
+        setTimeout(function(){ target.textContent = old; }, 2000);
+      };
+      var fallback = function(){ window.location.href = 'mailto:' + text; };
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(done, fallback);
+        } else { fallback(); }
+      } catch (e) { fallback(); }
+    });
+  });
+
+  /* ---------- skills tabs ---------- */
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+  function select(tab){
+    tabs.forEach(function(t){
+      var on = t === tab;
+      t.setAttribute('aria-selected', on);
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+    });
+  }
+  tabs.forEach(function(t, i){
+    t.addEventListener('click', function(){ select(t); });
+    t.addEventListener('keydown', function(e){
+      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+        var n = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
+        select(n); n.focus(); e.preventDefault();
+      }
+    });
+  });
+
+  /* ---------- hex field ---------- */
+  var hero = document.querySelector('.hero');
+  var canvas = document.getElementById('hex');
+  var ctx = canvas.getContext('2d');
+  if (!ctx) return;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var SQ3 = Math.sqrt(3);
+  var S, W, H, cols, rows, energy, dpr, colors = {}, raf = 0, ripple = null;
+  var DIRS = [[1,0],[1,-1],[0,-1],[-1,0],[-1,1],[0,1]];
+
+  function readColors(){
+    var cs = getComputedStyle(document.documentElement);
+    colors.line = cs.getPropertyValue('--hex-line').trim();
+    colors.fill = cs.getPropertyValue('--signal').trim();
+    colors.max = parseFloat(cs.getPropertyValue('--hex-max')) || .5;
+  }
+  function center(c, r){ return [S*SQ3*(c + 0.5*(r & 1)), S*1.5*r]; }
+  function toAxial(c, r){ return [c - (r - (r & 1))/2, r]; }
+  function toOffset(q, r){ return [q + (r - (r & 1))/2, r]; }
+  function cellAt(x, y){
+    var q = (SQ3/3*x - y/3)/S, r = (2/3*y)/S, s = -q - r;
+    var rq = Math.round(q), rr = Math.round(r), rs = Math.round(s);
+    var dq = Math.abs(rq-q), dr = Math.abs(rr-r), ds = Math.abs(rs-s);
+    if (dq > dr && dq > ds) rq = -rr - rs; else if (dr > ds) rr = -rq - rs;
+    return toOffset(rq, rr);
+  }
+  function idx(c, r){ return (c < 0 || r < 0 || c >= cols || r >= rows) ? -1 : r*cols + c; }
+  function bump(c, r, v){ var i = idx(c, r); if (i >= 0 && energy[i] < v) energy[i] = v; }
+
+  function resize(){
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = hero.clientWidth; H = hero.clientHeight;
+    S = W < 640 ? 20 : 28;
+    canvas.width = Math.round(W*dpr); canvas.height = Math.round(H*dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    cols = Math.ceil(W/(S*SQ3)) + 2; rows = Math.ceil(H/(S*1.5)) + 2;
+    energy = new Float32Array(cols*rows);
+    draw();
+  }
+
+  function hexPath(x, y, rad){
+    ctx.moveTo(x + rad*Math.cos(Math.PI/6), y + rad*Math.sin(Math.PI/6));
+    for (var k = 1; k < 6; k++){
+      var a = Math.PI/6 + k*Math.PI/3;
+      ctx.lineTo(x + rad*Math.cos(a), y + rad*Math.sin(a));
+    }
+    ctx.closePath();
+  }
+
+  function draw(){
+    ctx.clearRect(0, 0, W, H);
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = colors.line;
+    ctx.beginPath();
+    for (var r = 0; r < rows; r++) for (var c = 0; c < cols; c++){
+      var p = center(c, r); hexPath(p[0], p[1], S - 1);
+    }
+    ctx.stroke();
+    ctx.fillStyle = colors.fill;
+    for (var i = 0; i < energy.length; i++){
+      if (energy[i] > 0.015){
+        var cc = i % cols, rr = (i / cols) | 0, q = center(cc, rr);
+        ctx.globalAlpha = energy[i]*colors.max;
+        ctx.beginPath(); hexPath(q[0], q[1], S - 3); ctx.fill();
+      }
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  function tick(t){
+    var active = false;
+    if (ripple){
+      if (!ripple.start) ripple.start = t;
+      var rad = (t - ripple.start)/45;
+      for (var r = 0; r < rows; r++) for (var c = 0; c < cols; c++){
+        var a = toAxial(c, r), dq = a[0]-ripple.q, dr = a[1]-ripple.r;
+        var d = (Math.abs(dq) + Math.abs(dr) + Math.abs(dq+dr))/2;
+        if (d < 16 && Math.abs(d - rad) < 0.6) bump(c, r, 0.75*(1 - d/16));
+      }
+      if (rad > 17) ripple = null;
+      active = true;
+    }
+    for (var i = 0; i < energy.length; i++){
+      if (energy[i] > 0.015){ energy[i] *= 0.95; active = true; } else energy[i] = 0;
+    }
+    draw();
+    raf = active ? requestAnimationFrame(tick) : 0;
+  }
+  function wake(){ if (!raf) raf = requestAnimationFrame(tick); }
+
+  hero.addEventListener('pointermove', function(e){
+    var b = hero.getBoundingClientRect();
+    var cell = cellAt(e.clientX - b.left, e.clientY - b.top);
+    bump(cell[0], cell[1], 1);
+    var a = toAxial(cell[0], cell[1]);
+    DIRS.forEach(function(d){ var o = toOffset(a[0]+d[0], a[1]+d[1]); bump(o[0], o[1], 0.35); });
+    wake();
+  });
+  hero.addEventListener('pointerdown', function(e){
+    if (reduce.matches) return;
+    var b = hero.getBoundingClientRect();
+    var cell = cellAt(e.clientX - b.left, e.clientY - b.top), a = toAxial(cell[0], cell[1]);
+    ripple = { q: a[0], r: a[1], start: 0 };
+    wake();
+  });
+
+  readColors();
+  resize();
+  if (window.ResizeObserver) new ResizeObserver(function(){ resize(); }).observe(hero);
+  else window.addEventListener('resize', resize);
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(){ readColors(); draw(); });
+
+  if (!reduce.matches){
+    var start = cellAt(W*0.78, H*0.42), sa = toAxial(start[0], start[1]);
+    ripple = { q: sa[0], r: sa[1], start: 0 };
+    setTimeout(wake, 350);
+  }
+})();
+</script>
+</body>
+</html>
